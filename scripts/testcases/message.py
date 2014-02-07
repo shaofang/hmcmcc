@@ -25,8 +25,8 @@ class MessageTest(unittest.TestCase):
         #Delete messages if there is any message.
         if not d(text="No conversations.").wait.exists(timeout=2000):
             d(className='android.view.View').long_click()
-            if d(text="Select all").wait.exists(timeout=3000):
-                d(text="Select all").click.wait()
+            if d(text="Check All").wait.exists(timeout=3000):
+                d(text="Check All").click.wait()
             d(text="Delete").click.wait()
             d(text="Delete").click.wait()
             assert d(text="No conversations.").wait.exists(timeout=3000), 'Delete messages failed'
@@ -53,8 +53,8 @@ class MessageTest(unittest.TestCase):
         #Delete messages if there is any message.
         if not d(text="No conversations.").wait.exists(timeout=1000):
             d(className='android.view.View').long_click()
-            if d(text="Select all").wait.exists(timeout=3000):
-                d(text="Select all").click.wait()
+            if d(text="Check All").wait.exists(timeout=3000):
+                d(text="Check All").click.wait()
             d(text="Delete").click.wait()
             d(text="Delete").click.wait()
 
@@ -72,7 +72,9 @@ class MessageTest(unittest.TestCase):
         d(text='Capture picture').click.wait()
         assert d(description='Shutter button').wait.exists(timeout=3000), 'no camera' 
         d(description='Shutter button').click.wait()
-        assert d(className='android.widget.ImageView', index=1).wait.exists(timeout=10000), 'Take picture failed'
+
+        assert d(className='android.widget.ImageView', index=1, description='Shutter button').wait.gone(timeout=10000), 'Take picture failed'
+        assert d(className='android.widget.ImageView', index=1).wait.exists(timeout=5000), 'No confirm for picture'
         d(className='android.widget.ImageView', index=1).click.wait()
         assert d(text='MMS').wait.exists(timeout=5000), 'add attachment failed'
 
