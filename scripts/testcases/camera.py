@@ -25,9 +25,9 @@ class CameraTest(unittest.TestCase):
         #Delete the recent picture
         d(description='Most recent photo').click.wait()
         assert d(text="Delete").wait.exists(timeout=3000), 'No picture to delete.'
-        d(text="Delete").click.wait()
-        d(text="OK").click.wait()
+        #d(text="Delete").click.wait()
+        #d(text="OK").click.wait()
         #If there is not only one picture
-        if d(text="Delete").wait.exists(timeout=2000):
-            d.press('back')
+        #if d(text="Delete").wait.exists(timeout=2000):
+        d.press('back')
         assert d(description="Shutter button").wait.exists(timeout=5000), 'unable back to camera after delete in 5s.'
